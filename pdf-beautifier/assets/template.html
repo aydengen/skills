@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{文档标题}}</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* 字体大小变量 */
+      --font-logo: 34px;
+      --font-tagline: 18px;
+      --font-h1: 26px;
+      --font-subtitle: 15px;
+      --font-greeting-title: 15px;
+      --font-greeting-text: 13px;
+      --font-section-number: 13px;
+      --font-section-title: 16px;
+      --font-section-content: 12.5px;
+      --font-list-item: 12.5px;
+      --font-footer: 12px;
+
+      /* 颜色变量 */
+      --color-primary: #5A7A5E;
+      --color-primary-dark: #3D5A40;
+      --color-primary-light: #6B8B6E;
+      --color-secondary: #8B7355;
+      --color-accent: #C4A45A;
+      --color-bg: #F5F2E8;
+      --color-border: #B8AE9C;
+      --color-text: #4A5A4A;
+      --color-text-light: #6B7B6E;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Serif SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--color-bg);
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    /* 几何折线背景 - 使用 CSS 渐变模拟 */
+    .geometric-bg-top-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url('./line.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top right;
+      transform: rotate(180deg) translate(-28%, 31%);
+      opacity: 0.6;
+    }
+
+    .geometric-bg-bottom-left {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translate(-8%, 18%);
+      width: 55%;
+      height: 55%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url('./line.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: bottom left;
+      opacity: 0.6;
+    }
+
+    /* 内边框 */
+    .inner-frame {
+      position: absolute;
+      top: 12mm;
+      left: 10mm;
+      right: 10mm;
+      bottom: 20mm;
+      border: 1px solid var(--color-border);
+      z-index: 1;
+    }
+
+    /* Header 区域 */
+    .header {
+      position: relative;
+      z-index: 2;
+      padding: 16mm 14mm 8mm 14mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+    }
+
+    .logo-text {
+      font-size: var(--font-logo);
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: var(--font-tagline);
+      color: var(--color-secondary);
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* 分隔线 */
+    .header-divider {
+      position: relative;
+      z-index: 2;
+      margin: 0 14mm;
+      height: 2px;
+      background: var(--color-primary);
+    }
+
+    /* 主内容区域 */
+    .main-content {
+      position: relative;
+      z-index: 2;
+      padding: 10mm 14mm;
+    }
+
+    /* 主标题 */
+    .main-title {
+      text-align: center;
+      margin-bottom: 6mm;
+    }
+
+    .main-title h1 {
+      font-size: var(--font-h1);
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      letter-spacing: 3px;
+      margin-bottom: 4px;
+    }
+
+    .main-title .subtitle {
+      font-size: var(--font-subtitle);
+      color: var(--color-primary-light);
+      font-weight: 400;
+    }
+
+    /* Greeting */
+    .greeting {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 14px;
+      margin-bottom: 5mm;
+      border-left: 3px solid var(--color-primary);
+    }
+
+    .greeting-title {
+      font-size: var(--font-greeting-title);
+      font-weight: 600;
+      color: var(--color-primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .greeting-text {
+      font-size: var(--font-greeting-text);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .footer-divider {
+      margin: 0 14mm;
+      height: 2px;
+      background: var(--color-primary);
+    }
+
+    .footer-content {
+      padding: 4mm 14mm;
+      text-align: center;
+      font-size: var(--font-footer);
+      color: var(--color-text-light);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-content span {
+      margin: 0 6px;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+        gap: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        page-break-after: always;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== 第 1 页 ========== -->
+  <div class="page">
+    <!-- 几何折线背景 -->
+    <div class="geometric-bg-top-right"></div>
+    <div class="geometric-bg-bottom-left"></div>
+
+    <!-- 内边框 -->
+    <div class="inner-frame"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <!-- Logo Icon - 书本图标 -->
+        <svg class="logo-icon" viewBox="0 0 64 64" fill="none">
+          <path d="M8 12C8 10 10 8 12 8H28C30 8 32 10 32 12V52C32 54 30 56 28 56H12C10 56 8 54 8 52V12Z" fill="#C4A45A"
+            opacity="0.9" />
+          <path d="M32 12C32 10 34 8 36 8H52C54 8 56 10 56 12V52C56 54 54 56 52 56H36C34 56 32 54 32 52V12Z"
+            fill="#5A7A5E" />
+          <path d="M32 14V54" stroke="#F5F2E8" stroke-width="2" />
+          <path d="M14 20H26M14 28H26M14 36H26" stroke="#F5F2E8" stroke-width="1.5" stroke-linecap="round"
+            opacity="0.7" />
+          <path d="M38 20H50M38 28H50M38 36H50" stroke="#F5F2E8" stroke-width="1.5" stroke-linecap="round"
+            opacity="0.7" />
+        </svg>
+        <span class="logo-text">{{机构名称}}</span>
+      </div>
+      <div class="tagline">
+        以专业与陪伴<br>助力孩子成长
+      </div>
+    </header>
+
+    <!-- Header 分隔线 -->
+    <div class="header-divider"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- 主标题 -->
+      <div class="main-title">
+        <h1>{{主标题}}</h1>
+        <p class="subtitle">{{副标题}}</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        {{机构名称}}<span>|</span>{{服务类型}}
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========== 多页时，复制整个 .page 容器 ========== -->
+  <!-- 
+  <div class="page">
+    ... 第 2 页内容 ...
+    <footer class="footer">
+      <div class="footer-divider"></div>
+      <div class="footer-content">
+        {{机构名称}}<span>|</span>{{服务类型}}<span>|</span>第2页
+      </div>
+    </footer>
+  </div>
+  -->
+</body>
+
+</html>
