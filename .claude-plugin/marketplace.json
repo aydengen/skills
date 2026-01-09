@@ -1,0 +1,22 @@
+{
+  "name": "ayden-skills",
+  "owner": {
+    "name": "Ayden",
+    "email": ""
+  },
+  "metadata": {
+    "description": "Ayden's custom skills collection",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "pdf-beautifier",
+      "description": "PDF beautification skill for creating visually appealing and well-formatted PDF documents",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./pdf-beautifier"
+      ]
+    }
+  ]
+}
