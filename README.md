@@ -41,7 +41,7 @@ git clone https://github.com/aydengen/skills.git .claude/skills
 ```markdown
 ---
 name: skill-name
-description: 技能描述，Gemini 据此判断何时使用该技能
+description: 技能描述，Claude 据此判断何时使用该技能
 ---
 
 # 技能标题
