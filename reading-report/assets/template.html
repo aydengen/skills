@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生英语阅读能力评估报告 - {{学生姓名}}</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue",
+          Arial, sans-serif;
+        background: #f0f0f0;
+        color: #333;
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      .page {
+        width: 210mm;
+        margin: 20px auto;
+        background: white;
+        padding: 20mm 22mm;
+      }
+
+      /* ========== Title ========== */
+      h1.main-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 6px;
+      }
+
+      .student-line {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 22px;
+      }
+
+      /* ========== Section Title ========== */
+      h2.section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #333;
+        margin: 18px 0 8px 0;
+      }
+
+      .section-desc {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 12px;
+        line-height: 1.8;
+      }
+
+      .note {
+        font-size: 14px;
+        color: #888;
+        margin-top: 8px;
+        line-height: 1.6;
+      }
+
+      /* ========== Summary Box ========== */
+      .summary-box {
+        background: #fafafa;
+        border-left: 4px solid #e6b800;
+        padding: 12px 16px;
+        margin: 8px 0 10px 0;
+      }
+
+      .summary-box p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.8;
+      }
+
+      /* ========== Score Cards ========== */
+      .score-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .score-row-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .score-card {
+        border: 1px solid #e5e5e5;
+        padding: 8px 12px 10px 12px;
+        display: flex;
+        flex-direction: column;
+        min-height: 140px;
+        background: rgba(242, 242, 242);
+      }
+
+      .score-card .label {
+        width: 100%;
+      }
+
+      .score-card .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .score-card .label h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+      }
+
+      .score-card .label .sub {
+        display: block;
+        font-size: 11px;
+        color: #888;
+        margin-top: 6px;
+      }
+
+      .score-card .value {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        white-space: nowrap;
+        background: #fff;
+        padding: 4px 8px;
+        border-radius: 999px;
+        line-height: 1;
+        margin-top: -4px;
+      }
+
+      .card-note {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.7;
+        flex: 1;
+      }
+
+      /* ========== Strength Section ========== */
+      .strength-section {
+        margin: 8px 0;
+      }
+
+      .strength-box {
+        border: 1px solid #e5e5e5;
+        border-left: 4px solid #27ae60;
+        padding: 10px 14px;
+        margin-bottom: 8px;
+      }
+
+      .strength-box.improve {
+        border-left-color: #f39c12;
+      }
+
+      .strength-box h4 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .strength-box p {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* ========== Reading Table ========== */
+      .reading-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 14px;
+      }
+
+      .reading-table th {
+        background: #f8f8f8;
+        border: 1px solid #e5e5e5;
+        padding: 10px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .reading-table td {
+        border: 1px solid #e5e5e5;
+        padding: 12px 14px;
+        vertical-align: top;
+        line-height: 1.7;
+      }
+
+      .reading-table td strong {
+        font-weight: 600;
+      }
+
+      /* ========== Suggestions ========== */
+      h3.suggestions-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        margin: 22px 0 10px 0;
+      }
+
+      .suggestions {
+        list-style: none;
+        padding: 0;
+      }
+
+      .suggestions li {
+        font-size: 15px;
+        color: #333;
+        margin-bottom: 6px;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.7;
+      }
+
+      .suggestions li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 6px;
+        height: 6px;
+        background: #333;
+        border-radius: 50%;
+      }
+
+      /* ========== Print Styles with Page Break Control ========== */
+      @media print {
+        body {
+          background: white;
+        }
+
+        .page {
+          margin: 0;
+          padding: 12mm 18mm;
+          width: 100%;
+        }
+
+        @page {
+          size: A4;
+          margin: 0;
+        }
+
+        /* ===== 防止元素内部被分页截断 ===== */
+        .score-card,
+        .score-row,
+        .score-row-2,
+        .strength-box,
+        .summary-box,
+        .suggestions li,
+        p {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        /* 表格行不截断 */
+        tr {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        /* 小表格整体不分页 */
+        table.reading-table {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+
+        /* ===== 防止标题与后续内容分离 ===== */
+        h1,
+        h2,
+        h3,
+        h4 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
+        /* ===== 手动分页辅助类 ===== */
+        .page-break-before {
+          break-before: page;
+          page-break-before: always;
+        }
+
+        .page-break-after {
+          break-after: page;
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="main-title">
+        学生英语阅读能力评估报告（Star Reading测试结果）
+      </h1>
+      <p class="student-line">学生姓名：<strong>{{学生姓名}}</strong></p>
+
+      <!-- ========== 一、总体水平概览 ========== -->
+      <h2 class="section-title">一、总体水平概览</h2>
+      <div class="summary-box">
+        <p>{{总体评价}}</p>
+      </div>
+      <p class="note">{{测试说明备注}}</p>
+
+      <!-- ========== 二、核心测试分数解读 ========== -->
+      <h2 class="section-title">二、核心测试分数解读</h2>
+
+      <div class="score-row">
+        <div class="score-card">
+          <div class="label">
+            <div class="label-row">
+              <h3>GE</h3>
+              <div class="value">{{GE值}}</div>
+            </div>
+            <span class="sub">(Grade Equivalent 年级等效值)</span>
+          </div>
+          <p class="card-note">{{GE说明}}</p>
+        </div>
+        <div class="score-card">
+          <div class="label">
+            <div class="label-row">
+              <h3>IRL</h3>
+              <div class="value">{{IRL值}}</div>
+            </div>
+            <span class="sub">(教学阅读等级)</span>
+          </div>
+          <p class="card-note">{{IRL说明}}</p>
+        </div>
+        <div class="score-card">
+          <div class="label">
+            <div class="label-row">
+              <h3>Est. ORF</h3>
+              <div class="value">{{ORF值}}</div>
+            </div>
+            <span class="sub">(预估口语流利度)</span>
+          </div>
+          <p class="card-note">{{ORF说明}}</p>
+        </div>
+      </div>
+
+      <div class="score-row-2">
+        <div class="score-card">
+          <div class="label">
+            <div class="label-row">
+              <h3>PR</h3>
+              <div class="value">{{PR值}}</div>
+            </div>
+            <span class="sub">(Percentile Rank 百分位排名)</span>
+          </div>
+          <p class="card-note">{{PR说明}}</p>
+        </div>
+        <div class="score-card">
+          <div class="label">
+            <div class="label-row">
+              <h3>Lexile</h3>
+              <div class="value">{{Lexile值}}</div>
+            </div>
+            <span class="sub">(蓝思值)</span>
+          </div>
+          <p class="card-note">{{Lexile说明}}</p>
+        </div>
+      </div>
+
+      <!-- ========== 三、整体阅读优势与待加强 ========== -->
+      <h2 class="section-title">三、整体阅读优势与待加强</h2>
+
+      <div class="strength-section">
+        <div class="strength-box">
+          <h4>优势</h4>
+          <p>{{优势内容}}</p>
+        </div>
+        <div class="strength-box improve">
+          <h4>待加强</h4>
+          <p>{{待加强内容}}</p>
+        </div>
+      </div>
+
+      <!-- ========== 四、横向对比：推荐阅读级别（可加 page-break-before） ========== -->
+      <h2 class="section-title page-break-before">四、横向对比：推荐阅读级别</h2>
+      <p class="section-desc">{{推荐说明}}</p>
+
+      <table class="reading-table">
+        <tr>
+          <th style="width: 20%">读物体系</th>
+          <th style="width: 22%">对应您孩子的推荐级别</th>
+          <th>说明与书例</th>
+        </tr>
+        <!-- 根据实际内容添加表格行 -->
+        <tr>
+          <td><strong>{{读物体系1}}</strong></td>
+          <td>{{推荐级别1}}</td>
+          <td>{{说明1}}</td>
+        </tr>
+        <tr>
+          <td><strong>{{读物体系2}}</strong></td>
+          <td>{{推荐级别2}}</td>
+          <td>{{说明2}}</td>
+        </tr>
+      </table>
+
+      <!-- ========== 五、学习建议 ========== -->
+      <h2 class="section-title">五、学习建议</h2>
+      <ul class="suggestions">
+        <li>{{建议1}}</li>
+        <li>{{建议2}}</li>
+        <li>{{建议3}}</li>
+      </ul>
+    </div>
+  </body>
+</html>
