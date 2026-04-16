@@ -45,7 +45,7 @@ pdf-beautifier/
 - **Header 区域**：Logo + 机构名称 + 标语
 - **Header 分隔线**
 - **主标题区域** `.main-title`：文档主标题 + 副标题
-- **Footer 区域**：机构名称 + 服务类型 + 页码
+- **Footer 区域**：机构名称 + 服务类型（不显示页码）
 
 ### 自由发挥区域
 - **主内容区域** `.main-content`（主标题之后的内容）：**完全由模型根据原文内容自由设计**
@@ -59,13 +59,11 @@ pdf-beautifier/
 --font-logo: 34px;
 --font-tagline: 18px;
 --font-h1: 26px;
---font-subtitle: 15px;
---font-greeting-title: 15px;
---font-greeting-text: 13px;
---font-section-number: 13px;
---font-section-title: 16px;
---font-section-content: 12.5px;
---font-list-item: 12.5px;
+--font-subtitle: 16px;
+--font-section-number: 15px;
+--font-section-title: 18px;
+--font-section-content: 14.5px;
+--font-list-item: 14.5px;
 --font-footer: 12px;
 
 /* 颜色 */
@@ -100,8 +98,16 @@ pdf-beautifier/
 1. **语义化结构**：根据内容含义选择合适的 HTML 标签
 2. **视觉层次**：通过字号、颜色、间距区分内容层级
 3. **重点突出**：关键数字、金额、次数等使用加粗或主题色强调
-4. **适度留白**：保持页面呼吸感，避免内容过于拥挤
+4. **充足留白**：保持页面呼吸感，宁可多分一页也不要内容拥挤
 5. **简洁克制**：使用基础标记，避免过度装饰
+
+### 间距规范
+- **section 区块间距**：`margin-bottom: 7mm`
+- **卡片/服务项间距**：`margin-bottom: 3.5mm`
+- **section 标题与内容间距**：`margin-bottom: 4mm`
+- **主标题下方间距**：`margin-bottom: 8mm`
+- **正文行高**：`line-height: 1.75 ~ 1.8`
+- **卡片内边距**：`padding: 10px 14px`
 
 ### 常用排版手法
 - **卡片式布局**：使用背景色、圆角、边框分隔不同区块
@@ -122,9 +128,9 @@ pdf-beautifier/
 考虑到固定元素（Header、主标题、Footer）占用的空间，`.main-content` 区域的实际可用高度约为 **180mm**（A4 高度 297mm - Header 约 40mm - 主标题约 25mm - Footer 约 20mm - 内边距约 32mm）。
 
 根据字体大小和行高，每页大约可容纳：
-- **正文内容**：约 35-40 行（12.5px 字号，1.6 行高）
-- **服务区块**：约 3-4 个中等大小的服务区块（每个区块含标题 + 3-5 个列表项）
-- **混合内容**：约 6-8 个段落或列表组合
+- **正文内容**：约 28-32 行（14.5px 字号，1.75 行高）
+- **服务区块**：约 2-3 个中等大小的服务区块（每个区块含标题 + 3-5 个列表项）
+- **混合内容**：约 5-6 个段落或列表组合
 
 ## 内容识别指南
 

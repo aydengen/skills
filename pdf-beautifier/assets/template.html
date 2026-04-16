@@ -14,13 +14,11 @@
       --font-logo: 34px;
       --font-tagline: 18px;
       --font-h1: 26px;
-      --font-subtitle: 15px;
-      --font-greeting-title: 15px;
-      --font-greeting-text: 13px;
-      --font-section-number: 13px;
-      --font-section-title: 16px;
-      --font-section-content: 12.5px;
-      --font-list-item: 12.5px;
+      --font-subtitle: 16px;
+      --font-section-number: 15px;
+      --font-section-title: 18px;
+      --font-section-content: 14.5px;
+      --font-list-item: 14.5px;
       --font-footer: 12px;
 
       /* 颜色变量 */
@@ -165,7 +163,7 @@
     /* 主标题 */
     .main-title {
       text-align: center;
-      margin-bottom: 6mm;
+      margin-bottom: 8mm;
     }
 
     .main-title h1 {
@@ -200,7 +198,7 @@
     .greeting-text {
       font-size: var(--font-greeting-text);
       color: var(--color-text);
-      line-height: 1.5;
+      line-height: 1.75;
     }
 
     /* Footer */
@@ -302,14 +300,14 @@
     </footer>
   </div>
 
-  <!-- ========== 多页时，复制整个 .page 容器 ========== -->
+  <!-- ========== 多页时，复制整个 .page 容器，Footer 不加页码 ========== -->
   <!-- 
   <div class="page">
     ... 第 2 页内容 ...
     <footer class="footer">
       <div class="footer-divider"></div>
       <div class="footer-content">
-        {{机构名称}}<span>|</span>{{服务类型}}<span>|</span>第2页
+        {{机构名称}}<span>|</span>{{服务类型}}
       </div>
     </footer>
   </div>
